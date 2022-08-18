@@ -35,7 +35,10 @@ async function getNFTData(tokenId) {
         image: meta.image,
         name: meta.name,
         description: meta.description,
-    }
+        twitter: meta.twitter,
+        linkedin: meta.linkedin,
+        email: meta.email,
+   }
     console.log(item);
     updateData(item);
     updateDataFetched(true);
@@ -53,12 +56,12 @@ async function buyNFT(tokenId) {
         //Pull the deployed contract instance
         let contract = new ethers.Contract(MarketplaceJSON.address, MarketplaceJSON.abi, signer);
         const salePrice = ethers.utils.parseUnits(data.price, 'ether')
-        updateMessage("Buying the NFT... Please Wait (Upto 5 mins)")
+        updateMessage("Following the 301NFT... Please Wait (Up to 5 mins)")
         //run the executeSale function
         let transaction = await contract.executeSale(tokenId, {value:salePrice});
         await transaction.wait();
 
-        alert('You successfully bought the NFT!');
+        alert('You successfully followed the 301NFT!');
         updateMessage("");
     }
     catch(e) {
@@ -91,6 +94,15 @@ async function buyNFT(tokenId) {
                     </div>
                     <div>
                         Seller: <span className="text-sm">{data.seller}</span>
+                    </div>
+                    <div>
+                        Twitter: <span className="">{data.twitter}</span>
+                    </div>
+                    <div>
+                        LinkedIn: <span className="text-sm">{data.linkedin}</span>
+                    </div>
+                    <div>
+                        Email: <span className="text-sm">{data.email}</span>
                     </div>
                     <div>
                     { currAddress == data.owner || currAddress == data.seller ?

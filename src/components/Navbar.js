@@ -77,7 +77,7 @@ async function connectWebsite() {
             <Link to="/">
             <img src={fullLogo} alt="" width={120} height={120} className="inline-block -mt-2"/>
             <div className='inline-block font-bold text-xl ml-2'>
-              NFT Marketplace
+              301NFT
             </div>
             </Link>
           </li>
@@ -85,29 +85,29 @@ async function connectWebsite() {
             <ul className='lg:flex justify-between font-bold mr-10 text-lg'>
               {location.pathname === "/" ? 
               <li className='border-b-2 hover:pb-0 p-2'>
-                <Link to="/">Marketplace</Link>
+                <Link to="/">301NFT Hall</Link>
               </li>
               :
               <li className='hover:border-b-2 hover:pb-0 p-2'>
-                <Link to="/">Marketplace</Link>
+                <Link to="/">301NFT Hall</Link>
               </li>              
               }
               {location.pathname === "/sellNFT" ? 
               <li className='border-b-2 hover:pb-0 p-2'>
-                <Link to="/sellNFT">List My NFT</Link>
+                <Link to="/sellNFT">Create 301NFT</Link>
               </li>
               :
               <li className='hover:border-b-2 hover:pb-0 p-2'>
-                <Link to="/sellNFT">List My NFT</Link>
+                <Link to="/sellNFT">Create 301NFT</Link>
               </li>              
               }              
               {location.pathname === "/profile" ? 
               <li className='border-b-2 hover:pb-0 p-2'>
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile">My 301NFT List</Link>
               </li>
               :
               <li className='hover:border-b-2 hover:pb-0 p-2'>
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile">My 301NFT List</Link>
               </li>              
               }  
               <li>

@@ -5,7 +5,7 @@ import Marketplace from '../Marketplace.json';
 import { useLocation } from "react-router";
 
 export default function SellNFT () {
-    const [formParams, updateFormParams] = useState({ name: '', description: '', price: ''});
+    const [formParams, updateFormParams] = useState({ name: '', description: '', price: '', twitter: '', linkedin: '', email: ''});
     const [fileURL, setFileURL] = useState(null);
     const ethers = require("ethers");
     const [message, updateMessage] = useState('');
@@ -30,13 +30,13 @@ export default function SellNFT () {
 
     //This function uploads the metadata to IPDS
     async function uploadMetadataToIPFS() {
-        const {name, description, price} = formParams;
+        const {name, description, price, twitter, linkedin, email} = formParams;
         //Make sure that none of the fields are empty
-        if( !name || !description || !price || !fileURL)
+        if( !name || !description || !price || !fileURL || !twitter || !linkedin || !email)
             return;
 
         const nftJSON = {
-            name, description, price, image: fileURL
+            name, description, price, twitter, linkedin, email, image: fileURL
         }
 
         try {
@@ -77,7 +77,7 @@ export default function SellNFT () {
 
             alert("Successfully listed your NFT!");
             updateMessage("");
-            updateFormParams({ name: '', description: '', price: ''});
+            updateFormParams({ name: '', description: '', price: '', twitter: '', linkedin: '', email: ''});
             window.location.replace("/")
         }
         catch(e) {
@@ -91,14 +91,26 @@ export default function SellNFT () {
         <Navbar></Navbar>
         <div className="flex flex-col place-items-center mt-10" id="nftForm">
             <form className="bg-white shadow-md rounded px-8 pt-4 pb-8 mb-4">
-            <h3 className="text-center font-bold text-purple-500 mb-8">Upload your NFT to the marketplace</h3>
+            <h3 className="text-center font-bold text-purple-500 mb-8">Create your 301NFT in the metaverse</h3>
                 <div className="mb-4">
-                    <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="name">NFT Name</label>
+                    <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="name">Your 301NFT Name</label>
                     <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Axie#4563" onChange={e => updateFormParams({...formParams, name: e.target.value})} value={formParams.name}></input>
                 </div>
                 <div className="mb-6">
-                    <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="description">NFT Description</label>
+                    <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="description">Your 301NFT Description</label>
                     <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" cols="40" rows="5" id="description" type="text" placeholder="Axie Infinity Collection" value={formParams.description} onChange={e => updateFormParams({...formParams, description: e.target.value})}></textarea>
+                </div>
+                <div className="mb-4">
+                    <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="twitter">Twitter</label>
+                    <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="twitter" type="text" placeholder="Axie Infinity Collection" value={formParams.twitter} onChange={e => updateFormParams({...formParams, twitter: e.target.value})}></textarea>
+                </div>
+                <div className="mb-4">
+                    <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="linkedin">LinkedIn</label>
+                    <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="linkedin" type="text" placeholder="Axie Infinity Collection" value={formParams.linkedin} onChange={e => updateFormParams({...formParams, linkedin: e.target.value})}></textarea>
+                </div>
+                <div className="mb-4">
+                    <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="email">Email</label>
+                    <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Axie Infinity Collection" value={formParams.email} onChange={e => updateFormParams({...formParams, email: e.target.value})}></textarea>
                 </div>
                 <div className="mb-6">
                     <label className="block text-purple-500 text-sm font-bold mb-2" htmlFor="price">Price (in ETH)</label>
@@ -111,7 +123,7 @@ export default function SellNFT () {
                 <br></br>
                 <div className="text-green text-center">{message}</div>
                 <button onClick={listNFT} className="font-bold mt-10 w-full bg-purple-500 text-white rounded p-2 shadow-lg">
-                    List NFT
+                    Create 301NFT
                 </button>
             </form>
         </div>
